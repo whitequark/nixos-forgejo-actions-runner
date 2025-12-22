@@ -1,0 +1,2 @@
+/nixos/site/*.toml
+!/nixos/site/example.org.toml

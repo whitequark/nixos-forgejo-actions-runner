@@ -1,0 +1,28 @@
+[host]
+platform = "x86_64-linux"
+
+[net.ipv6]
+# ether = "" (only for split-interface dual-stack)
+address = "2001:db8::1/64"
+gateway = "fe80::1"
+
+[net.ipv4]
+# ether = "" (only for split-interface dual-stack)
+address = "192.0.2.10/24"
+gateway = "192.0.2.1"
+
+[dns]
+servers = ["2620:fe::10", "9.9.9.10"]
+
+[ssh]
+pubkeys = [
+  "ssh-ed25519 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA username",
+]
+
+[runners.default]
+forge = "https://codeberg.org"
+token = "AddYourForgejoTokenHereGetItFromTheForge"
+labels = [
+  "debian-trixie:docker://node:24-trixie",
+  "nix-stable:docker://nixos/nix:2.32.0",
+]
