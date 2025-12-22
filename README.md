@@ -12,6 +12,20 @@ Using it **does not require NixOS-specific knowledge or using Nix** in most case
 > A Forgejo Actions runner may be configured in many different ways that subtly (or not so subtly) affect both how your CI workflows are run and how secure the resulting configuration is. This repository configures the Forgejo Actions runner to work with **podman**; as a result, there is no `docker` command available for CI workflows to use. While other configurations like **Docker-in-Docker** are possible, to our best knowledge it is not possible to secure such configurations without making unfounded assumptions about the types of CI workflows being run, and so they will not be provided here.
 
 
+System requirements
+-------------------
+
+You will need a suitable VPS. Recommended system specifications:
+
+  * Intel or AMD64 architecture;
+  * 2 or more CPU cores;
+  * 4 GB or more RAM;
+  * 20 GB or more SSD space;
+  * 100 Mbps or faster dual-stack (IPv4 plus IPv6) network.
+
+A shared (non-dedicated) VPS with these specifications can cost less than €5 per month and be sufficient for many personal CI workloads.
+
+
 Prerequisites
 -------------
 
