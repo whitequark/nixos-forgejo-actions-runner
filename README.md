@@ -9,7 +9,7 @@ Using it **does not require NixOS-specific knowledge or using Nix** in most case
 [runner]: https://forgejo.org/docs/next/admin/actions/runner-installation/
 
 > [!IMPORTANT]
-> A Forgejo Actions runner may be configured in many different ways that subtly (or not so subtly) affect both how your CI workflows are run and how secure the resulting configuration is. This repository configures the Forgejo Actions runner to work with **podman**; as a result, there is no `docker` command available for CI workflows to use. While other configurations like **Docker-in-Docker** are possible, to our best knowledge it is not possible to secure such configurations without making unfounded assumptions about the types of CI workflows being run, and so they will not be provided here.
+> A Forgejo Actions runner may be configured in many different ways that subtly (or not so subtly) affect both how your CI workflows are run and how secure the resulting configuration is. This repository configures the Forgejo Actions runner to work with **podman**; as a result, there is no `docker` command available for CI workflows to use. While a **Docker-in-Docker** configuration is possible that includes a `docker` command, to our best knowledge it is not possible to secure such a configuration without making risky assumptions about the types of CI workflows being run, so it will not be provided here.
 
 
 System requirements
@@ -57,7 +57,7 @@ First, you will need a build host with NixOS installed. If you want to use this 
 
 If the nixos-bite tool succeeds and the machine is accessible via SSH after a reboot, then the build host satisfies these assumptions.
 
-Once you can SSH into your new build host with NixOS running, create a configuration file `nixos/site/HOSTNAME.toml` for it, where `HOSTNAME` is either the fully-qualified domain name like `ci-1.example.org` (recommended), or an IP address like `2001:db8::1`. The deployment will be fully determined by the `*.nix` files in this repository and the `*.toml` file you create.
+Once you can SSH into your new build host with NixOS running, create a configuration file `./nixos/site/HOSTNAME.toml` for it in the checkout of this repository, where `HOSTNAME` is either the fully-qualified domain name like `ci-1.example.org` (recommended), or an IP address like `2001:db8::1`. The deployment will be fully determined by the `*.nix` files in this repository and the `*.toml` file you create.
 
 Start by specifying the platform. The two supported platforms are `x86_64-linux` (Intel) and `arm64-linux` (ARM), however any architecture supported by NixOS and Linux is likely to work.
 
@@ -139,6 +139,17 @@ Troubleshooting
 If something goes wrong, log into the build host using `ssh root@HOSTNAME` and examine its state. Many common diagnostic utilities will be preinstalled; if not, running `nix-shell -p PACKAGE` opens a shell with the corresponding [Nixpkgs] package installed.
 
 [nixpkgs]: https://search.nixos.org/packages
+
+
+Version control
+---------------
+
+If you are confident with Git, consider [using this repository as a template][template] for your own copy of it and checking in your configuration by running `git add --force ./nixos/site/HOSTNAME.toml && git commit`.
+
+[template]: https://codeberg.org/repo/create?template_id=1033416
+
+> [!WARNING]
+> **Don't forget to tick the "Make repository private" checkbox!** Anybody who learns the "registration token"  will have wide-ranging access to the projects using this Actions runner, including the ability to push commits and extract Actions secrets.
 
 
 Recovering from mistakes
