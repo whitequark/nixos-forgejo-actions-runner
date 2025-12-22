@@ -43,7 +43,7 @@ Installation
 The configuration in this repository is suitable for deploying to any number of build hosts, where each deployment contains any number of Forgejo Actions runner instances.
 
 > [!WARNING]
-> While all reasonable effort has been taken to provide a secure deployment, isolation of CI jobs (confidentiality and integrity) depends on correctness of the Linux container implementation. While we expect that in most cases, CI jobs for different projects may share a build host using this configuration, it is recommended to use one build host per project if there are resources available to do so.
+> While all reasonable effort has been taken to provide a secure deployment, isolation of CI jobs (confidentiality and integrity) depends on correctness of the Linux container and Forgejo Actions runner implementations. While we expect that in most cases, CI jobs for different projects may share a build host using this configuration, it is recommended to use one build host per project if there are resources available to do so.
 
 First, you will need a build host with NixOS installed. If you want to use this configuration with a VPS provider that does not offer NixOS as an option, pick Debian&nbsp;13&nbsp;(trixie) and then use the [nixos-bite] tool to convert it to NixOS. This repository makes certain assumptions about the virtual hardware:
 
@@ -101,7 +101,7 @@ Finally, configure each of the Forgejo Actions runner instances you need. If thi
 [Codeberg]: https://codeberg.org/
 
 > [!WARNING]
-> While all reasonable effort has been taken to provide a secure deployment, isolation of CI jobs (confidentiality and integrity) depends on correctness of the Linux container implementation. While we expect that in most cases, CI jobs for different projects may share a build host using this configuration, it is recommended to use one build host per project if there are resources available to do so.
+> While all reasonable effort has been taken to provide a secure deployment, isolation of CI jobs (confidentiality and integrity) depends on correctness of the Linux container and Forgejo Actions runner implementations. While we expect that in most cases, CI jobs for different projects may share a build host using this configuration, it is recommended to use one build host per project if there are resources available to do so.
 
 ```toml
 [runners.bnuuy]
