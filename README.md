@@ -45,7 +45,7 @@ The configuration in this repository is suitable for deploying to any number of 
 > [!WARNING]
 > While all reasonable effort has been taken to provide a secure deployment, isolation of CI jobs (confidentiality and integrity) depends on correctness of the Linux container implementation. While we expect that in most cases, CI jobs for different projects may share a build host using this configuration, it is recommended to use one build host per project if there are resources available to do so.
 
-First, you will need a build host with NixOS installed. If you want to use this configuration with a VPS provider that does not offer NixOS as an option, pick Debian&nbsp;13&nbsp;(trixie) and then use the [nixos-bite] tool to convert it to NixOS. This repository make certain assumptions about the virtual hardware:
+First, you will need a build host with NixOS installed. If you want to use this configuration with a VPS provider that does not offer NixOS as an option, pick Debian&nbsp;13&nbsp;(trixie) and then use the [nixos-bite] tool to convert it to NixOS. This repository makes certain assumptions about the virtual hardware:
 
 [nixos-bite]: https://codeberg.org/whitequark/nixos-bite
 
@@ -155,7 +155,7 @@ It is possible to make the build host inaccessible or unusable by entering incor
 Support
 -------
 
-This repository and README are provided "as is" and it is not reasonably feasible to offer technical support to everyone experiencing difficulties with it. However, if you were able to solve your problem and concluded that this guide was unclear or lacking, or there was an issue with the NixOS configuration, please [file an issue](https://codeberg.org/whitequark/nixos-forgejo-actions-runner/issues) or [open a pull request](https://codeberg.org/whitequark/nixos-forgejo-actions-runner/pulls) so that it can be improved.
+This repository and README are provided "as is" and it is not reasonably feasible to offer technical support to everyone experiencing difficulties with them. However, if you were able to solve your problem and concluded that this guide was unclear or lacking, or there was an issue with the NixOS configuration, please [file an issue](https://codeberg.org/whitequark/nixos-forgejo-actions-runner/issues) or [open a pull request](https://codeberg.org/whitequark/nixos-forgejo-actions-runner/pulls) so that it can be improved.
 
 > [!TIP]
 > Debugging Forgejo Actions runner issues did not spark joy.
