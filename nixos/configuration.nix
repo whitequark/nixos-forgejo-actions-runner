@@ -30,10 +30,14 @@ in
   };
 
   # Ensure we can build for most major architectures.
-  boot.binfmt.emulatedSystems = lib.remove siteConfig.host.platform [
-    "aarch64-linux"
-    "x86_64-linux"
-  ];
+  boot.binfmt = {
+    emulatedSystems = lib.remove siteConfig.host.platform [
+      "aarch64-linux"
+      "x86_64-linux"
+    ];
+
+    preferStaticEmulators = true;
+  };
 
   # SSH
   services.openssh = {
