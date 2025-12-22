@@ -50,7 +50,7 @@ First, you will need a build host with NixOS installed. If you want to use this 
 [nixos-bite]: https://codeberg.org/whitequark/nixos-bite
 
   * The root filesystem is ext4 and its label is `root` (use `e2label /dev/xxx root` to change it if necessary);
-  * **For an x86_64 UEFI machine:** the ESP filesystem is vfat and its label is `boot`;
+  * **For an x86_64 UEFI machine:** the ESP filesystem is vfat and its label is `boot` (use `fatlabel /dev/xxx boot` to change it if necessary);
   * **For an x86_64 BIOS machine:** the root filesystem contains `/boot` and the bootloader is installed in the MBR of `/dev/sda` or `/dev/vda` (whichever exists);
   * The network configuration is static and known in advance;
   * IPv6-only, IPv4-only, and dual-stack networking is supported, including split-interface dual-stack.
