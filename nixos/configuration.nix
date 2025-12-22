@@ -80,7 +80,7 @@ in
       port = accum.port + 1;
     })
     { config = { }; port = cacheProxyPort; }
-    siteConfig.runners).config;
+    (if siteConfig ? runners then siteConfig.runners else { })).config;
   };
 
   virtualisation.podman = {
