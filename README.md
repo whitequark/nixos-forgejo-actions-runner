@@ -9,7 +9,7 @@ Using it **does not require NixOS-specific knowledge or using Nix** in most case
 [runner]: https://forgejo.org/docs/next/admin/actions/runner-installation/
 
 > [!IMPORTANT]
-> A Forgejo Actions runner may be configured in many different ways that subtly (or not so subtly) affect both how your CI workflows are run and how secure the resulting configuration is. This repository configures the Forgejo Actions runner to work with **podman**; as a result, there is no `docker` command available for CI workflows to use. While a **Docker-in-Docker** configuration is possible that includes a `docker` command, to our best knowledge it is not possible to secure such a configuration without making risky assumptions about the types of CI workflows being run, so it will not be provided here.
+> A Forgejo Actions runner may be configured in many different ways that subtly (or not so subtly) affect both how your CI workflows are run and how secure the resulting configuration is. This repository configures the Forgejo Actions runner to use **podman** for isolation; as a result, there is no `docker` command available for CI workflows to use. While a **Docker-in-Docker** configuration is possible that includes a `docker` command, to our best knowledge it is not possible to secure such a configuration without making risky assumptions about the types of CI workflows being run, so it will not be provided here.
 
 
 System requirements
