@@ -54,7 +54,7 @@ in
 
     instances = (lib.attrsets.foldlAttrs (accum: name: runnerConfig: {
       config = accum.config // {
-        name = {
+        ${name} = {
           enable = true;
           name = "${name}@${serverName}";
           url = "https://${runnerConfig.forge}";
