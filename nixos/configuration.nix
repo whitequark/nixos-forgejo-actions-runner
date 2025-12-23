@@ -64,6 +64,9 @@ in
           labels = runnerConfig.labels;
 
           settings = {
+            runner = {
+              capacity = if runnerConfig ? capacity then runnerConfig.capacity else 1;
+            };
             # While the Forgejo Actions administrator manual suggests disabling the cache for
             # slow disks, in practice many actions (like `actions/setup-go`) will assume it exists
             # and time out for a rather long time if it actually doesn't. Thus, we enable the cache

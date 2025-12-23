@@ -111,12 +111,14 @@ labels = [
   "debian-trixie:docker://node:24-trixie",
   "nix-stable:docker://nixos/nix:2.32.0",
 ]
+capacity = 1
 ```
 
   * The `NAME` in `[runners.NAME]` is an identifier of your choice. It has no special significance, but will be visible in the Forgejo Actions settings once your instance is online.
   * The `forge` key should contain the base URL of the forge.
   * The `token` key should contain the "registration token" provided by the forge under Settings ‣ Actions ‣ Runners: ![screenshot of the "Create new runner" dialog](forge-token-setup.png)
   * The meaning of the `labels` key is [explained in the Forgejo Actions administrator guide](https://forgejo.org/docs/next/admin/actions/#choosing-labels).
+  * The `capacity` key determines how many concurrent jobs the runner will accept.
 
 To configure multiple runners, include several `[runners.NAME]` sections with distinct `NAME`s.
 

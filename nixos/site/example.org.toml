@@ -26,3 +26,4 @@ labels = [
   "debian-trixie:docker://node:24-trixie",
   "nix-stable:docker://nixos/nix:2.32.0",
 ]
+# capacity = 1 (default)
