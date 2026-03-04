@@ -11,6 +11,9 @@ gateway = "fe80::1"
 address = "192.0.2.10/24"
 gateway = "192.0.2.1"
 
+[net.tailscale]
+enable = false
+
 [dns]
 servers = ["2620:fe::10", "9.9.9.10"]
 

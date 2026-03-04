@@ -78,6 +78,13 @@ address = "192.0.2.10/24"
 gateway = "192.0.2.1"
 ```
 
+Optionally, [Tailscale](https://tailscale.com/) can be used to administer machines behind NAT:
+
+```toml
+[net.tailscale]
+enable = true
+```
+
 The DNS configuration below, using [Quad9] servers with all filtering disabled, may be used as-is:
 
 [quad9]: https://quad9.net/

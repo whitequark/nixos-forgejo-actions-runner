@@ -48,6 +48,9 @@ in
 
   users.users.root.openssh.authorizedKeys.keys = siteConfig.ssh.pubkeys;
 
+  # Tailscale
+  services.tailscale = (if siteConfig.net ? tailscale then siteConfig.net.tailscale else {});
+
   # Actions Runner
   services.gitea-actions-runner = {
     package = pkgs.forgejo-runner;
