@@ -10,6 +10,9 @@ let
     name = builtins.elemAt fqdnParts 0;
     domain = builtins.elemAt fqdnParts 1;
   };
+
+  hasIpv6 = x: siteConfig.net ? ipv6 && siteConfig.net.ipv6 ? ${x};
+  hasIpv4 = x: siteConfig.net ? ipv4 && siteConfig.net.ipv4 ? ${x};
 in
 {
   networking = {
@@ -24,7 +27,7 @@ in
       Address = route.address;
       Peer = route.peer;
     });
-  in (if siteConfig.net.ipv6 ? ether && siteConfig.net.ipv4 ? ether then {
+  in (if (hasIpv6 "ether") && (hasIpv4 "ether") then {
     enable = true;
     networks."40-wan6" = {
       matchConfig.Name = "enx${builtins.replaceStrings [":"] [""] siteConfig.net.ipv6.ether}";
@@ -47,14 +50,14 @@ in
         then "enx${builtins.replaceStrings [":"] [""] siteConfig.net.ether}"
         else "en*");
       address =
-        (lib.optional (siteConfig.net ? ipv4) siteConfig.net.ipv4.address) ++
-        (lib.optional (siteConfig.net ? ipv6) siteConfig.net.ipv6.address);
+        (lib.optional (siteConfig.net ? ipv6) siteConfig.net.ipv6.address) ++
+        (lib.optional (siteConfig.net ? ipv4) siteConfig.net.ipv4.address);
       gateway =
-        (lib.optional (siteConfig.net ? ipv4) siteConfig.net.ipv4.gateway) ++
-        (lib.optional (siteConfig.net ? ipv6) siteConfig.net.ipv6.gateway);
+        (lib.optional (siteConfig.net ? ipv6) siteConfig.net.ipv6.gateway) ++
+        (lib.optional (siteConfig.net ? ipv4) siteConfig.net.ipv4.gateway);
       addresses =
-        (if siteConfig.net.ipv6 ? routes then mkAddresses siteConfig.net.ipv6.routes else []) ++
-        (if siteConfig.net.ipv4 ? routes then mkAddresses siteConfig.net.ipv4.routes else []);
+        (if (hasIpv6 "routes") then mkAddresses siteConfig.net.ipv6.routes else []) ++
+        (if (hasIpv4 "routes") then mkAddresses siteConfig.net.ipv4.routes else []);
       dns = siteConfig.dns.servers;
     };
   });
