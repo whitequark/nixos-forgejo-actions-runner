@@ -1,9 +1,6 @@
-{ lib, ... }:
+{ lib, serverName, siteConfig, ... }:
 
 let
-  serverName = builtins.getEnv "HOST";
-  siteConfig = lib.importTOML (./. + "/site/${serverName}.toml");
-
   host = let
     fqdnParts = builtins.match "([a-z0-9-]+)\\.([a-z.]+)" serverName;
   in {

@@ -1,9 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, serverName, siteConfig, ... }:
 
 let
-  serverName = builtins.getEnv "HOST";
-  siteConfig = lib.importTOML (./. + "/site/${serverName}.toml");
-
   cacheProxyPort = 42000;
 in
 {
