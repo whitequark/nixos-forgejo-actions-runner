@@ -6,5 +6,5 @@ if [ -z "${HOST}" ]; then
     exit 1
 fi
 
-rsync -vrt --delete --delete-excluded nixos/ root@${HOST}:/etc/nixos
+rsync -vrt --delete-excluded -f "+ site/${HOST}.toml" -f "- site/*" nixos/ root@${HOST}:/etc/nixos
 ssh root@${HOST} "HOST=${HOST} nixos-rebuild switch -f /etc/nixos/pivot.nix --no-reexec --show-trace"
