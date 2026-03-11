@@ -1,5 +1,5 @@
-NixOS Forgejo Actions runner
-============================
+NixOS Forgejo Actions runner v1
+===============================
 
 This repository contains a [NixOS] configuration for a dedicated [Forgejo Actions runner][runner] host running on a virtual private server.
 
