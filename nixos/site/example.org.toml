@@ -22,11 +22,13 @@ pubkeys = [
   "ssh-ed25519 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA username",
 ]
 
-[runners.default]
+[runner]
+capacity = 1
+
+[connections.codeberg]
 forge = "https://codeberg.org"
 token = "AddYourForgejoTokenHereGetItFromTheForge"
 labels = [
   "debian-trixie:docker://node:24-trixie",
   "nix-stable:docker://nixos/nix:2.32.0",
 ]
-# capacity = 1 (default)

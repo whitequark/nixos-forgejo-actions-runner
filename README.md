@@ -103,7 +103,16 @@ pubkeys = [
 ]
 ```
 
-Finally, configure each of the Forgejo Actions runner instances you need. If this configuration is for your personal use only, e.g. to avoid resource limits placed by a forge like [Codeberg], you will likely use only one instance. In more complex cases, such as if you manage multiple Forgejo organizations or use multiple forges, you will need to use one instance per forge and Forgejo user or organization.
+Configure the global Forgejo Actions runner settings:
+
+```toml
+[runner]
+capacity = 8
+```
+
+  * The `capacity` key determines how many concurrent jobs the runner will accept across every forge connection.
+
+Finally, configure each of the individual forge connections. If this configuration is for your personal use only, e.g. to avoid resource limits placed by a forge like [Codeberg], you will likely use only one forge connection. In more complex cases, such as if you manage multiple Forgejo organizations or use multiple forges, you will need to use one forge connection per forge and Forgejo user or organization.
 
 [Codeberg]: https://codeberg.org/
 
@@ -111,23 +120,21 @@ Finally, configure each of the Forgejo Actions runner instances you need. If thi
 > While all reasonable effort has been taken to provide a secure deployment, isolation of CI jobs (confidentiality and integrity) depends on correctness of the Linux container and Forgejo Actions runner implementations. While we expect that in most cases, CI jobs for different projects may share a build host using this configuration, it is recommended to use one build host per project if there are resources available to do so.
 
 ```toml
-[runners.bnuuy]
+[connections.bnuuy]
 forge = "codeberg.org"
 token = "AddYourForgejoTokenHereGetItFromTheForge"
 labels = [
   "debian-trixie:docker://node:24-trixie",
   "nix-stable:docker://nixos/nix:2.32.0",
 ]
-capacity = 1
 ```
 
-  * The `NAME` in `[runners.NAME]` is an identifier of your choice. It has no special significance, but will be visible in the Forgejo Actions settings once your instance is online.
+  * The `NAME` in `[connections.NAME]` is an identifier of your choice. It has no special significance, but will be visible in the Forgejo Actions settings once your instance is online.
   * The `forge` key should contain the base URL of the forge (e.g. `codeberg.org`). The `https://` protocol is added automatically by the config.
   * The `token` key should contain the "registration token" provided by the forge under Settings ‣ Actions ‣ Runners: ![screenshot of the "Create new runner" dialog](forge-token-setup.png)
   * The meaning of the `labels` key is [explained in the Forgejo Actions administrator guide](https://forgejo.org/docs/next/admin/actions/#choosing-labels).
-  * The `capacity` key determines how many concurrent jobs the runner will accept.
 
-To configure multiple runners, include several `[runners.NAME]` sections with distinct `NAME`s.
+To configure multiple connections, include several `[connections.NAME]` sections with distinct `NAME`s.
 
 Finally, run `./scripts/deploy.sh HOSTNAME`. After a few minutes, you should see your new Forgejo Actions runner instance appear in the Forgejo interface under Settings ‣ Actions ‣ Runners:
 
