@@ -49,8 +49,10 @@ recursiveUpdate {
   swapDevices = (optional (pathExists "/swap") {
     device = "/swap";
     size = 2048;
+    options = [ "discard" ];
   }) ++ (optional (pathExists "/dev/disk/by-label/swap") {
     device = "/dev/disk/by-label/swap";
+    options = [ "discard" ];
   });
   zramSwap.enable = true;
 
