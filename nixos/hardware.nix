@@ -8,6 +8,9 @@ recursiveUpdate {
   ];
 
   boot = {
+    loader.timeout = 15;
+    loader.grub.memtest86.enable = true;
+
     initrd = {
       availableKernelModules = [
         # USB
@@ -26,8 +29,11 @@ recursiveUpdate {
       ];
     };
 
-    loader.timeout = 15;
-    loader.grub.memtest86.enable = true;
+    kernelParams = [
+      "zswap.enabled=1"
+      "zswap.max_pool_percent=25"
+      "zswap.shrinker_enabled=1"
+    ];
 
     tmp.cleanOnBoot = true;
   };
@@ -54,7 +60,6 @@ recursiveUpdate {
     device = "/dev/disk/by-label/swap";
     options = [ "discard" ];
   });
-  zramSwap.enable = true;
 
 } (if (pathExists /sys/firmware/efi) then {
   # UEFI system
