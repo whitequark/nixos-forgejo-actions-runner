@@ -75,7 +75,7 @@ in
       };
     };
   in {
-    enable = true;
+    enable = (siteConfig.connections != {});
     description = "Forgejo Actions runner";
     wants = [ "network-online.target" ];
     after = [
