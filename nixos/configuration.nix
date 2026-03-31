@@ -124,6 +124,7 @@ in
             -e s/_token_${name}_/$(cat $tokenFile)/
         '') siteConfig.connections);
       ExecStart = "${pkgs.forgejo-runner}/bin/act_runner daemon --config config.yaml";
+      ExecReload = "/bin/kill -s HUP $MAINPID";
       SupplementaryGroups = [ "podman" ];
     };
   };
