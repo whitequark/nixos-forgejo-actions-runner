@@ -3,9 +3,9 @@
     "nixos": {
       "type": "Channel",
       "name": "nixos-25.11",
-      "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.7346.44bae273f9f8/nixexprs.tar.xz",
-      "hash": "122mzxwvjn2grrcyi2qa5bcs3gymlqmxcm7ra6j9cdwbniqfay29"
+      "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.10684.8fd9daa3db09/nixexprs.tar.xz",
+      "hash": "sha256-Wnep4aNfC1Mo18h9gHMDCkEApbLgSlKvS33AwHANChE="
     }
   },
-  "version": 5
+  "version": 7
 }
