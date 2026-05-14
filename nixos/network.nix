@@ -24,17 +24,19 @@ in
       Address = route.address;
       Peer = route.peer;
     });
+    mkEtherIfname = ether:
+      "enx${builtins.replaceStrings [":"] [""] (lib.toLower ether)}";
   in (if (hasIpv6 "ether") && (hasIpv4 "ether") then {
     enable = true;
     networks."40-wan6" = {
-      matchConfig.Name = "enx${builtins.replaceStrings [":"] [""] siteConfig.net.ipv6.ether}";
+      matchConfig.Name = mkEtherIfname siteConfig.net.ipv6.ether;
       address = [siteConfig.net.ipv6.address];
       gateway = [siteConfig.net.ipv6.gateway];
       addresses = if siteConfig.net.ipv6 ? routes then mkAddresses siteConfig.net.ipv6.routes else [];
       dns = siteConfig.dns.servers;
     };
     networks."40-wan4" = {
-      matchConfig.Name = "enx${builtins.replaceStrings [":"] [""] siteConfig.net.ipv4.ether}";
+      matchConfig.Name = mkEtherIfname siteConfig.net.ipv4.ether;
       address = [siteConfig.net.ipv4.address];
       gateway = [siteConfig.net.ipv4.gateway];
       addresses = if siteConfig.net.ipv4 ? routes then mkAddresses siteConfig.net.ipv4.routes else [];
@@ -44,7 +46,7 @@ in
     enable = true;
     networks."40-wan" = {
       matchConfig.Name = (if siteConfig.net ? ether
-        then "enx${builtins.replaceStrings [":"] [""] siteConfig.net.ether}"
+        then mkEtherIfname siteConfig.net.ether
         else "en*");
       address =
         (lib.optional (siteConfig.net ? ipv6) siteConfig.net.ipv6.address) ++
