@@ -1,9 +1,11 @@
-{ config, lib, pkgs, serverName, siteConfig, ... }:
+{ lib, pkgs, serverName, siteConfig, ... }:
+
+with lib;
 
 let
   cacheProxyPort = 42000;
 in
-{
+recursiveUpdate {
   imports = [
     ./hardware.nix
     ./network.nix
@@ -28,7 +30,7 @@ in
 
   # Ensure we can build for most major architectures.
   boot.binfmt = {
-    emulatedSystems = lib.remove siteConfig.host.platform [
+    emulatedSystems = remove siteConfig.host.platform [
       "aarch64-linux"
       "x86_64-linux"
     ];
@@ -99,7 +101,7 @@ in
         (pkgs.writeShellScript "forgejo-runner-initialize" ''
           cat ${configFile} >$STATE_DIRECTORY/config.yaml
         '')
-      ] ++ (lib.mapAttrsToList (name: connConfig:
+      ] ++ (mapAttrsToList (name: connConfig:
         let configHash = builtins.hashString "md5" (builtins.toJSON connConfig); in
         pkgs.writeShellScript "forgejo-runner-register-${name}" ''
           set -e
@@ -136,7 +138,6 @@ in
 
     # Required for Forgejo Actions Cache to work properly.
     interfaces."podman+" = {
-      # There is (to my knowledge) no way to get the size of an attrset. I love Nix.
       allowedTCPPorts = [ cacheProxyPort ];
     };
   };
@@ -149,6 +150,12 @@ in
     net-tools
     tcpdump
   ];
+} (if pathExists "/etc/nfar/version" then {
+  system.stateVersion = strings.removeSuffix "\n" (builtins.readFile "/etc/nfar/version");
+} else rec {
+  systemd.tmpfiles.rules = [
+    "f /etc/nfar/version 0644 root root - ${system.stateVersion}"
+  ];
 
-  system.stateVersion = "25.11";
-}
+  system.stateVersion = trivial.release;
+})

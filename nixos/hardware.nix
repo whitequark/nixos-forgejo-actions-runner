@@ -1,4 +1,4 @@
-{ modulesPath, lib, serverName, siteConfig, ... }:
+{ modulesPath, lib, siteConfig, ... }:
 
 with lib;
 
