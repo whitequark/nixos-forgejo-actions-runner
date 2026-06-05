@@ -32,7 +32,7 @@ Prerequisites
 To use this repository, you will need a Linux, macOS, or Windows (WSL) system with `git`, `ssh`, and `rsync` installed. An existing Nix or NixOS installation is **not** required. Begin by cloning this repository:
 
 ```console
-$ git clone https://codeberg.org/whitequark/nixos-forgejo-actions-runner
+$ git clone https://codeberg.org/FelineBuildServices/nixos-forgejo-actions-runner
 $ cd nixos-forgejo-actions-runner
 ```
 
@@ -146,7 +146,7 @@ Modification and updates
 
 After updating the build host configuration file, run `./scripts/deploy.sh HOSTNAME` again. Once the command completes successfully, the build host will match the updated configuration.
 
-This repository will be kept up to date with NixOS releases. To apply such an update, run `git pull https://codeberg.org/whitequark/nixos-forgejo-actions-runner main` and then `./scripts/deploy.sh HOSTNAME` for each of your build hosts.
+This repository will be kept up to date with NixOS releases. To apply such an update, run `git pull https://codeberg.org/FelineBuildServices/nixos-forgejo-actions-runner main` and then `./scripts/deploy.sh HOSTNAME` for each of your build hosts.
 
 
 Troubleshooting
@@ -182,7 +182,7 @@ It is possible to make the build host inaccessible or unusable by entering incor
 Support
 -------
 
-This repository and README are provided "as is" and it is not reasonably feasible to offer technical support to everyone experiencing difficulties with them. However, if you were able to solve your problem and concluded that this guide was unclear or lacking, or there was an issue with the NixOS configuration, please [file an issue](https://codeberg.org/whitequark/nixos-forgejo-actions-runner/issues) or [open a pull request](https://codeberg.org/whitequark/nixos-forgejo-actions-runner/pulls) so that it can be improved.
+This repository and README are provided "as is" and it is not reasonably feasible to offer technical support to everyone experiencing difficulties with them. However, if you were able to solve your problem and concluded that this guide was unclear or lacking, or there was an issue with the NixOS configuration, please [file an issue](https://codeberg.org/FelineBuildServices/nixos-forgejo-actions-runner/issues) or [open a pull request](https://codeberg.org/FelineBuildServices/nixos-forgejo-actions-runner/pulls) so that it can be improved.
 
 > [!TIP]
 > Debugging Forgejo Actions runner issues did not spark joy.
