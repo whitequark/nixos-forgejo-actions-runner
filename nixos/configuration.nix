@@ -26,6 +26,22 @@ recursiveUpdate {
     flake.source = (import ./npins).nixos;
 
     hostPlatform = siteConfig.host.platform;
+
+    # See https://github.com/podman-container-tools/podman/issues/29805.
+    overlays = [
+      (final: prev: {
+        podman = prev.podman.overrideAttrs (oldAttrs: rec {
+          version = "5.8.4";
+
+          src = final.fetchFromGitHub {
+            owner = "podman-container-tools";
+            repo = "podman";
+            tag = "v${version}";
+            hash = "sha256-zhEtMZVKiv1L72EMlwgz8sHpmvhejGp98oW63aPj+rQ=";
+          };
+        });
+      })
+    ];
   };
 
   # Ensure we can build for most major architectures.
