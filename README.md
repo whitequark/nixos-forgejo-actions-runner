@@ -1,3 +1,6 @@
+> [!CAUTION]
+> `NixOS Forgejo Actions runner v2` is no longer receiving security updates, and is known to ship with vulnerable versions of major components; upgrading to the [latest version](https://codeberg.org/FelineBuildServices/nixos-forgejo-actions-runner) is strongly recommended.
+
 NixOS Forgejo Actions runner v2
 ===============================
 
