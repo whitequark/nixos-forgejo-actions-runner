@@ -1,5 +1,8 @@
-NixOS Forgejo Actions runner v2
+NixOS Forgejo Actions runner v3
 ===============================
+
+> [!CAUTION]
+> Older versions of `NixOS Forgejo Actions runner` (v1, v2) are no longer receiving security updates, and are known to ship with vulnerable versions of major components; upgrading to v3 is strongly recommended.
 
 This repository contains a [NixOS] configuration for a dedicated [Forgejo Actions runner][runner] host running on a virtual private server.
 
